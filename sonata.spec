@@ -1,18 +1,17 @@
 Summary:	GTK+ music client for MPD
 Summary(pl.UTF-8):	Oparty na GTK+ klient muzyki dla MPD
 Name:		sonata
-Version:	1.0.1
+Version:	1.5.2
 Release:	1
 License:	GPLv2?
 Group:		Applications
 Source0:	http://download.berlios.de/sonata/%{name}-%{version}.tar.bz2
-# Source0-md5:	aa7dd98cf31d719328adf7afba4c0c83
+# Source0-md5:	9506af4158076bba7ffe5ce5f80485af
 URL:		http://sonata.berlios.de/
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-pygtk-devel >= 2:2.6.0
 BuildRequires:	rpm-pythonprov
-Requires:	python-SOPE
-#Requires:	python-taglib # NFY
+Requires:	python-mpd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -29,13 +28,9 @@ Sonata to elegancki, oparty na GTK+ klient muzyki dla demona MPD
 %build
 python setup.py build
 
-#%{__make} \
-#	CFLAGS="%{rpmcflags}" \
-#	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{py_sitescriptdir}
 
 python setup.py install \
 	--root=$RPM_BUILD_ROOT \
@@ -52,15 +47,29 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README TODO CHANGELOG TRANSLATORS
 %attr(755,root,root) %{_bindir}/sonata
-%{py_sitedir}/Sonata-1.0.1-py*.egg-info
+%{py_sitedir}/Sonata-%{version}-py*.egg-info
 %attr(755,root,root) %{py_sitedir}/mmkeys.so
-%{py_sitedir}/mpdclient3.py[co]
-%{py_sitedir}/sonata.py
-%{py_sitedir}/sonata.py[co]
+%dir %{py_sitedir}/sonata
+%{py_sitedir}/sonata/__init__.py[co]
+%{py_sitedir}/sonata/audioscrobbler.py[co]
+%{py_sitedir}/sonata/img.py[co]
+%{py_sitedir}/sonata/main.py[co]
+%{py_sitedir}/sonata/misc.py[co]
+%{py_sitedir}/sonata/mpdhelper.py[co]
+%{py_sitedir}/sonata/tray.py[co]
+%{py_sitedir}/sonata/ui.py[co]
 %{_desktopdir}/sonata.desktop
 %{_pixmapsdir}/sonata-album.png
 %{_pixmapsdir}/sonata-artist.png
+%{_pixmapsdir}/sonata-case.png
+%{_pixmapsdir}/sonata-stock_volume-max.png
+%{_pixmapsdir}/sonata-stock_volume-med.png
+%{_pixmapsdir}/sonata-stock_volume-min.png
+%{_pixmapsdir}/sonata-stock_volume-mute.png
 %{_pixmapsdir}/sonata.png
+%{_pixmapsdir}/sonata_disconnect.png
 %{_pixmapsdir}/sonata_large.png
+%{_pixmapsdir}/sonata_pause.png
+%{_pixmapsdir}/sonata_play.png
 %{_pixmapsdir}/sonatacd.png
 %{_pixmapsdir}/sonatacd_large.png
