@@ -3,8 +3,8 @@ Summary(pl.UTF-8):	Oparty na GTK+ klient muzyki dla MPD
 Name:		sonata
 Version:	1.5.3
 Release:	1
-License:	GPLv3+
-Group:		Applications
+License:	GPL v3+
+Group:		X11/Applications/Sound
 Source0:	http://download.berlios.de/sonata/%{name}-%{version}.tar.bz2
 # Source0-md5:	447e46f24005de797ebc11131db1bd82
 Patch0:		%{name}-el.patch
@@ -12,6 +12,7 @@ URL:		http://sonata.berlios.de/
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-pygtk-devel >= 2:2.6.0
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
 Requires:	python-mpd
 Requires:	python-modules
 Requires:	python-pygtk-gtk >= 2:2.6.0
@@ -38,13 +39,12 @@ Sonata to elegancki, oparty na GTK+ klient muzyki dla demona MPD
 %{__mv} po/el_GR.po po/el.po
 
 %build
-python setup.py build
-
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-python setup.py install \
+%{__python} setup.py install \
 	--root=$RPM_BUILD_ROOT \
 	--optimize=2
 
