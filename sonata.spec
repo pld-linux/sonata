@@ -2,7 +2,7 @@ Summary:	GTK+ music client for MPD
 Summary(pl.UTF-8):	Oparty na GTK+ klient muzyki dla MPD
 Name:		sonata
 Version:	1.6.2
-Release:	2
+Release:	3
 License:	GPL v3+
 Group:		X11/Applications/Sound
 Source0:	http://download.berlios.de/sonata/%{name}-%{version}.tar.bz2
