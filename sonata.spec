@@ -9,6 +9,7 @@ Source0:	http://download.berlios.de/sonata/%{name}-%{version}.tar.bz2
 # Source0-md5:	f2bca0855fd2eb3d199f62fbd88af62f
 Patch0:		%{name}-el.patch
 URL:		http://sonata.berlios.de/
+BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-pygobject-devel
